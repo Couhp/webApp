@@ -7,6 +7,7 @@
 var express = require('express');
 var http = require('http');
 var router = express.Router();
+var userController = require(process.cwd() + "/app/controllers/index");
 
 router.get("/", (req, res) => {
     res.sendFile(process.cwd() + '/views/index.html');
@@ -16,14 +17,11 @@ router.get("/post", (req, res) => {
     res.sendFile(process.cwd() + '/views/singlepost.html');
 });
 
-router.post("/", (req, res) => {
-    if (req.body.message == "moreArticals") {
-        console.log("received");
-        var data = "<h1>Lorem Ipsum Dolor Sit</h1>";
-        res.json({ "data": data });
-    }
-})
+router.post("/", userController.myPage)
 
+// router.get("", (req,res) => {
+//     req.body.message == "getArtical"
+// })
 
 
 module.exports = router;

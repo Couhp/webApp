@@ -35,29 +35,31 @@ MongoClient.connect(URL, function(err, db) {
     //db.createCollection("articals");
     var collection = db.collection('articals');
     var path = "/home/luuphuoc/Documents/bbc (2)/tech";
-
-    for (var i = 1; i < 10; ++i) {
-        data = fs.readFileSync(path + "/00" + i + ".txt", 'utf8');
-
-        var title = data.split('\n')[0];
-        var timeCreate = getDateTime();
-        var author = "No info";
-        var image = "auto";
-        var content = data;
-        var category = "tech";
-        //console.log(content);
-        var artical = {
-            title: title,
-            timeCreate: timeCreate,
-            author: author,
-            image: image,
-            category: category,
-            content: content
-        };
-
-        collection.insert(artical);
-
+    for (i = 0; i < 4; i++) {
+        collection.remove({ key: { $exists: true } })
     }
+    // for (var i = 1; i < 10; ++i) {
+    //     data = fs.readFileSync(path + "/00" + i + ".txt", 'utf8');
+
+    //     var title = data.split('\n')[0];
+    //     var timeCreate = getDateTime();
+    //     var author = "No info";
+    //     var image = "auto";
+    //     var content = data;
+    //     var category = "tech";
+    //     //console.log(content);
+    //     var artical = {
+    //         title: title,
+    //         timeCreate: timeCreate,
+    //         author: author,
+    //         image: image,
+    //         category: category,
+    //         content: content
+    //     };
+
+    //     collection.insert(artical);
+
+    // }
 
     // collection.find({ category: 'business' }).toArray(function(err, docs) {
     //     console.log(docs)
