@@ -1,9 +1,10 @@
-$("document").ready(() => {
+$(document).ready(() => {
+
 
     var imageSearch = function(query, loop, callback) {
         // console.log("query : " + query);
         $.ajax({
-                url: "https://api.cognitive.microsoft.com/bing/v5.0/images/search?q=" + query + "&count=1",
+                url: "https://api.cognitive.microsoft.com/bing/v5.0/images/search?q=" + query + "&count=2",
                 beforeSend: function(xhrObj) {
                     // Request headers
                     xhrObj.setRequestHeader("Content-Type", "multipart/form-data");
@@ -16,7 +17,7 @@ $("document").ready(() => {
             .done(function(data) {
                 // alert("success");
                 // console.log(data);
-                callback(data.value["0"].contentUrl);
+                callback(data.value["1"].contentUrl);
             })
             .fail(function() {
                 alert("error");
@@ -32,16 +33,17 @@ $("document").ready(() => {
             artical += "<article class=\"lastarticle\"> <h1>" + data.title + "</h1>";
         else artical += "<article> <h1>" + data.title + "</h1>";
         artical += "<img src=\"" + image + "\" class=\"smallImage\" \\>";
-        artical += "<p>" + data.content.substring(0, 30) + "..." + "</p>";
-        artical += "<p>" + data.content.substring(0, 30) + "..." + "</p>";
-        artical += "<a class=\"rm readMore\">Read More</a></article>";
+        artical += "<p>" + data.content.substring(0, 80) + "..." + "</p>";
+        artical += "<button class=\"rm readMore\" id=\"" + data._id + "\">Read More</button></article>";
         return artical;
     }
 
+    $("div").on('click', "button.readMore", function() {
 
-    $(".readMore").on('click', function() {
-        window.location = "/mypage/post";
+        var id = $(this).attr('id')
+        window.location = "/mypage/post/" + id;
     });
+
 
     $("#moreArticals").on('click', function() {
         $.post("/mypage", { message: "moreArticals" },
@@ -63,7 +65,7 @@ $("document").ready(() => {
                         console.log(loop);
                         imageSearch(data[loop].title, loop, runLoop);
                     } else {
-                        artical += "<//div>";
+                        artical += "<//div><br>";
                         $("#smallArtical").append(artical);
                         return;
                     }

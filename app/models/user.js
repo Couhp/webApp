@@ -9,13 +9,17 @@ var db = new Db('mydatabase', server);
 
 exports.find = function(id, callback) {
     db.open(function(err, db) {
-        db.collection('articals', function(err, collection) {
-            collection.find(ObjectId(id)).toArray(function(err, docs) {
-                var myJson = docs[0];
-                callback(myJson);
+        if (!err) {
+            db.collection('articals', function(err, collection) {
+                collection.find(ObjectId(id)).toArray(function(err, docs) {
+                    db.close();
+                    var myJson = docs[0];
+                    callback(myJson);
+                })
             })
-        })
+        }
     })
+
 }
 
 exports.getRandom = function(num, callback) {

@@ -13,9 +13,11 @@ router.get("/", (req, res) => {
     res.sendFile(process.cwd() + '/views/index.html');
 });
 
-router.get("/post", (req, res) => {
+router.get("/post/:id", (req, res) => {
     res.sendFile(process.cwd() + '/views/singlepost.html');
 });
+
+router.post("/post/:id", userController.post)
 
 router.post("/", userController.myPage)
 
