@@ -128,7 +128,7 @@ header h1 {
 }
 
 header h2 {
-    font-size: 16px;
+    font-size: 20px;
     font-weight: normal;
     font-family: LeagueGothic, sans-serif;
     width: 170px;
@@ -623,4 +623,12 @@ footer {
 .bigImage {
     height: 140px;
     width: 275px;
+}
+
+.adcate {
+    border-size: 10px;
+    border-style: solid;
+    border-color: white;
+    top-margin: 300px;
+    bottom-margin: 300px;
 }

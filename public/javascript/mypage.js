@@ -4,7 +4,7 @@ $(document).ready(() => {
     var imageSearch = function(query, loop, callback) {
         // console.log("query : " + query);
         $.ajax({
-                url: "https://api.cognitive.microsoft.com/bing/v5.0/images/search?q=" + query + "&count=2",
+                url: "https://api.cognitive.microsoft.com/bing/v5.0/images/search?q=" + query + "&count=2&size=small",
                 beforeSend: function(xhrObj) {
                     // Request headers
                     xhrObj.setRequestHeader("Content-Type", "multipart/form-data");

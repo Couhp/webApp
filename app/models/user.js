@@ -22,6 +22,45 @@ exports.find = function(id, callback) {
 
 }
 
+exports.getListCategory = function(callback) {
+    db.open(function(err, db) {
+        if (!err) {
+            db.collection('articals', function(err, collection) {
+                // collection.find().distinct('category', function(error, ids) {
+                //     // db.close();
+                //     callback(ids);
+                // })
+                collection.distinct('category', function(err, docs) {
+                    callback(docs);
+                    db.close();
+                });
+            })
+        }
+    })
+}
+
+exports.getFromCategory = function(category, callback) {
+    db.open(function(err, db) {
+        if (!err) {
+            db.collection('articals', function(err, collection) {
+                collection.find({ category: category }).toArray(function(err, docs) {
+                    var out = []
+                    for (var i in docs) {
+                        var art = {
+                            id: docs[i]._id,
+                            title: docs[i].title
+                        }
+                        out.push(art)
+                    }
+
+                    callback(out);
+                    db.close();
+                })
+            })
+        }
+    })
+}
+
 exports.getRandom = function(num, callback) {
     db.open(function(err, db) {
         if (!err) {

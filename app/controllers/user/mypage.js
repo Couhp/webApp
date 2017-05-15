@@ -1,4 +1,3 @@
-var myconsole = require(process.cwd() + "/app/models/user");
 var db = require(process.cwd() + "/app/models/user");
 
 const myPage = (req, res) => {

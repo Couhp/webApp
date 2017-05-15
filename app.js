@@ -14,6 +14,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 const apiRouter = require(process.cwd() + '/app/routes/index.js');
 app.use('/', apiRouter);
+require('events').EventEmitter.prototype._maxListeners = 100;
 
 
 

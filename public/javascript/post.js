@@ -3,7 +3,7 @@ $("document").ready(() => {
     var imageSearch = function(query, callback) {
         // console.log("query : " + query);
         $.ajax({
-                url: "https://api.cognitive.microsoft.com/bing/v5.0/images/search?q=" + query + "&count=3",
+                url: "https://api.cognitive.microsoft.com/bing/v5.0/images/search?q=" + query + "&count=3&size=medium",
                 beforeSend: function(xhrObj) {
                     // Request headers
                     xhrObj.setRequestHeader("Content-Type", "multipart/form-data");
@@ -37,6 +37,7 @@ $("document").ready(() => {
         artical += "<article id=\"singlepost\">";
         artical += "<h1><a>" + data.title + "</a></h1>";
         artical += "<h2>Posted By: <a>" + data.author + "</a><br> On : <a>" + data.timeCreate + "</a></h2>"
+        artical += "<h2>Category : " + data.category + "</h2>";
         artical += "<img src=\" " + image[0] + "\" class=\"firstImage\"> ";
         artical += "<p>" + data.content + "</p>";
         artical += "<img src=\" " + image[1] + "\" class=\"firstImage\"> </article>";

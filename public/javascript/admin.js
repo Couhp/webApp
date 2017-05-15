@@ -29,5 +29,22 @@ $("document").ready(function() {
             });
     }));
 
+    $("#category").on('click', function() {
+        $.post("/admin/admin.html", { message: "getCategory" },
+            function(data, status) {
+                data = data.data;
+
+                var categoryList = "";
+                for (var i in data) {
+                    categoryList += "<button class=\"rm category\" id=\"" + data[i] + "\">" + data[i] + "</button><br>";
+                }
+                $(".adcate").append(categoryList);
+            });
+    });
+
+    $("p").on('click', "button.category", function() {
+        var category = $(this).attr('id');
+        window.location = "/admin/category/" + category;
+    });
 
 });
