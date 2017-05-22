@@ -6,6 +6,15 @@ const admin = (req, res) => {
             res.json({ data: data });
         });
     }
+
+    if (req.body.message == "add") {
+        var data = JSON.parse(req.body.data);
+        // console.log("data : " + data);
+        db.add(data, function() {
+            res.end("added");
+        })
+
+    }
 }
 
 

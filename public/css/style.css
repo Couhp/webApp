@@ -287,7 +287,7 @@ header {
     background-color: #F2F2F2;
     padding: 1px 4px;
     display: block;
-    width: 58px;
+    width: 70px;
     margin-top: 5px;
     box-shadow: 0px 0px 3px #000;
     font-family: LeagueGothic, sans-serif;
@@ -631,4 +631,20 @@ footer {
     border-color: white;
     top-margin: 300px;
     bottom-margin: 300px;
+}
+
+input[type=text] {
+    width: 300px;
+    height: 30px;
+    border: 2px;
+    font-size: 20px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+
+/* When the input field gets focus, change its width to 100% */
+
+input[type=text]:focus {
+    width: 100%;
 }

@@ -1,5 +1,6 @@
 $("document").ready(function() {
     console.log("fuck");
+    $("#displayAdd").hide();
     ///////////////////////////////////////////////////////////////////
     function getFormData($form) {
         var unindexed_array = $form.serializeArray();
@@ -19,12 +20,12 @@ $("document").ready(function() {
 
     $("#btn").on('click', (function() {
 
-        var data = getFormData($("#form"));
-        console.log(data);
-        $.post("/admin/admin.html",
-            data,
+        var docs = getFormData($("#form"));
+        // var data = { 1: 12 };
+        console.log("::", docs);
+        $.post("/admin/admin.html", { message: "add", data: JSON.stringify(docs) },
             function(data, status) {
-                $("p").append(data.message);
+                console.log(data.message);
 
             });
     }));
@@ -38,7 +39,7 @@ $("document").ready(function() {
                 for (var i in data) {
                     categoryList += "<button class=\"rm category\" id=\"" + data[i] + "\">" + data[i] + "</button><br>";
                 }
-                $(".adcate").append(categoryList);
+                $("#cate").append(categoryList);
             });
     });
 
@@ -46,5 +47,10 @@ $("document").ready(function() {
         var category = $(this).attr('id');
         window.location = "/admin/category/" + category;
     });
+
+    $("#add").on('click', function() {
+        $("#displayAdd").show();
+    })
+
 
 });
